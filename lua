@@ -29,7 +29,7 @@ function webhookLibrary.createMessage(properties)
     }
     local webhookFunctions = {}
     local EmbedIndex = 0
-    function webhookFunctions.addEmbed(title: string, color: number, description: string, imageUrl: string)
+    function webhookFunctions.addEmbed(title: string, color: number, description: string, imageUrl: string, footerText: string)
         assert(title, "title required")
         assert(description, "description required")
         assert(color, "color required")
@@ -48,6 +48,11 @@ function webhookLibrary.createMessage(properties)
         -- Add the image if provided
         if imageUrl and imageUrl ~= "" then
             embed["image"] = {["url"] = imageUrl}
+        end
+    
+        -- Add the footer if provided
+        if footerText and footerText ~= "" then
+            embed["footer"] = {["text"] = footerText}
         end
     
         -- Insert the embed into the requestTable
